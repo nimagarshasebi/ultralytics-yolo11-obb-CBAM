@@ -312,7 +312,7 @@ class CBAM(nn.Module):
         """Initialize CBAM with given input channel (c1) and kernel size."""
         super().__init__()
         self.channel_attention = ChannelAttention(c1)
-        self.spatial_attention = SpatialAttention(kernel_size)
+        self.spatial_attention = SpatialAttention(7)
 
     def forward(self, x):
         """Applies the forward pass through C1 module."""
