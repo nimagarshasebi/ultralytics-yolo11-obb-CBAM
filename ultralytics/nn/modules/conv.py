@@ -311,6 +311,7 @@ class CBAM(nn.Module):
     def __init__(self, c1, kernel_size=7):
         """Initialize CBAM with given input channel (c1) and kernel size."""
         super().__init__()
+        print(f"CBAM initialized with c1={c1}, kernel_size={kernel_size}") 
         self.channel_attention = ChannelAttention(c1)
         self.spatial_attention = SpatialAttention(7)
 
