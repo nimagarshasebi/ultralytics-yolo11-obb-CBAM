@@ -11,6 +11,7 @@ import torch
 import torch.nn as nn
 
 from ultralytics.nn.modules import (
+    ChannelAttention,
     CBAM,
     AIFI,
     C1,
@@ -967,6 +968,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
                     pass
         n = n_ = max(round(n * depth), 1) if n > 1 else n  # depth gain
         if m in {
+            ChannelAttention,
             CBAM,
             Classify,
             Conv,
