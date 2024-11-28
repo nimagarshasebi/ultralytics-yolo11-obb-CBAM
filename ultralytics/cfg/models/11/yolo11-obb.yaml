@@ -47,4 +47,4 @@ head:
   - [[-1, 11], 1, Concat, [1]] # cat head P5
   - [-1, 2, C3k2, [1024, True]] # 22 (P5/32-large)
 
-  - [[17, 20, 23], 1, OBB, [nc,[2.0,1.0,0.5]]] # Detect(P3, P4, P5)
+  - [[17, 20, 23], 1, OBB, [nc,1]] # Detect(P3, P4, P5)
