@@ -38,7 +38,7 @@ head:
   - [-1, 2, C3k2, [256, False]] # p18
   - [-1, 1, CBAM, [256]] #p19
 
-  - [-1, 1, nn.Upsample, [None, 8, "nearest"]] #p16
+  - [-1, 1, nn.Upsample, [None, 4, "nearest"]] #p16
   - [[-1, 2], 1, Concat, [1]] # p17
   - [-1, 2, C3k2, [128, False]] # p18
   - [-1, 1, CBAM, [128]] #p19
