@@ -28,30 +28,28 @@ backbone:
 
 # YOLO11n head
 head:
-  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] #p12
-  - [[-1, 6], 1, Concat, [1]] # p13
-  - [-1, 2, C3k2, [512, False]] # p14
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] #p11
+  - [[-1, 6], 1, Concat, [1]] # p12
+  - [-1, 2, C3k2, [512, False]] # p13
 
 
-  - [-1, 1, nn.Upsample, [None, 4, "nearest"]] #p16
-  - [[-1, 4], 1, Concat, [1]] # p17
-  - [-1, 2, C3k2, [256, False]] # p18
-  - [-1, 1, CBAM, [256]] #p19
+  - [-1, 1, nn.Upsample, [None, 4, "nearest"]] #p14
+  - [[-1, 4], 1, Concat, [1]] # p15
+  - [-1, 2, C3k2, [256, False]] # p16
 
-  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] #p16
-  - [[-1, 2], 1, Concat, [1]] # p17
-  - [-1, 2, C3k2, [128, False]] # p18
-  - [-1, 1, CBAM, [256]] #p19
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] #p17
+  - [[-1, 2], 1, Concat, [1]] # p18
+  - [-1, 2, C3k2, [256, False]] # p19
   
   
-  - [-1, 1, Conv, [256, 3, 2]] #p23
-  - [[-1, 14], 1, Concat, [1]] # p24
-  - [-1, 2, C3k2, [512, False]] # p25
+  - [-1, 1, Conv, [256, 3, 2]] #p20
+  - [[-1, 13], 1, Concat, [1]] # p21
+  - [-1, 2, C3k2, [512, False]] # p22
 
-  - [-1, 1, Conv, [512, 3, 2]] #p26
-  - [[-1, 10], 1, Concat, [1]] # p27
-  - [-1, 2, C3k2, [1024, True]] # p28
+  - [-1, 1, Conv, [512, 3, 2]] #p23
+  - [[-1, 10], 1, Concat, [1]] # p24
+  - [-1, 2, C3k2, [1024, True]] # p25
 
-  - [[18,21,24,27], 1, OBB, [nc,1]] # Detect
+  - [[16,19,22,25], 1, OBB, [nc,1]] # Detect
 
  
