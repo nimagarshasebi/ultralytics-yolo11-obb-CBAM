@@ -28,28 +28,25 @@ backbone:
 
 # YOLO11n head
 head:
-  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] #p11
-  - [[-1, 6], 1, Concat, [1]] # p12
-  - [-1, 2, C3k2, [512, False]] # p13
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # Upsample 2x
+  - [[-1, 6], 1, Concat, [1]] # cat backbone P4
+  - [-1, 2, C3k2, [512, False]] # 13 (P4 processing)
+
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # Upsample 2x
+  - [[-1, 4], 1, Concat, [1]] # cat backbone P3
+  - [-1, 2, C3k2, [256, False]] # 16 (P3 processing)
+
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # Upsample 2x
+  - [[-1, 2], 1, Concat, [1]] # cat backbone layer 2
+  - [-1, 2, C3k2, [128, False]] # New head layer (processing layer 2)
 
 
-  - [-1, 1, nn.Upsample, [None, 4, "nearest"]] #p14
-  - [[-1, 4], 1, Concat, [1]] # p15
-  - [-1, 2, C3k2, [256, False]] # p16
+  - [-1, 1, Conv, [256, 3, 2]] # Downsample
+  - [[-1, 13], 1, Concat, [1]] # cat head P4
+  - [-1, 2, C3k2, [512, False]] # 19 (P4/16-medium)
 
-  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] #p17
-  - [[-1, 2], 1, Concat, [1]] # p18
-  - [-1, 2, C3k2, [256, False]] # p19
-  
-  
-  - [-1, 1, Conv, [256, 3, 2]] #p20
-  - [[-1, 13], 1, Concat, [1]] # p21
-  - [-1, 2, C3k2, [512, False]] # p22
+  - [-1, 1, Conv, [512, 3, 2]] # Downsample
+  - [[-1, 10], 1, Concat, [1]] # cat head P5
+  - [-1, 2, C3k2, [1024, True]] # 22 (P5/32-large)
 
-  - [-1, 1, Conv, [512, 3, 2]] #p23
-  - [[-1, 10], 1, Concat, [1]] # p24
-  - [-1, 2, C3k2, [1024, True]] # p25
-
-  - [[16,19,22,25], 1, OBB, [nc,1]] # Detect
-
- 
+  - [[19,16,22,25], 1, OBB, [nc, 1]] # Detect(P3, P4, P5)
