@@ -36,9 +36,9 @@ head:
   - [[-1, 4], 1, Concat, [1]] # cat backbone P3
   - [-1, 2, C3k2, [256, False]] # 16 (P3 processing)
 
-  - [-1, 1, Conv, [256, 3, 2]]  # تطبیق اندازه
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # Upsample 2x
   - [[-1, 2], 1, Concat, [1]] 
-  - [-1, 2, C3k2, [256, False]] # New head layer (processing layer 2)
+  - [-1, 2, C3k2, [512, False]] # New head layer (processing layer 2)
 
 
   - [-1, 1, Conv, [256, 3, 2]] # Downsample
