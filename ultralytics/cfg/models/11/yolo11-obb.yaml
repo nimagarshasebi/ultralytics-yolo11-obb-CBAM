@@ -53,4 +53,4 @@ head:
   - [-1, 2, C3k2, [1024, True]] # 22 (P5/32-large)
   - [-1, 1, CBAM, [1024]]
   
-  - [[18, 22, 26,30], 1, OBB, [nc, 1]] # Detect(P3, P4, P5, P3-supersmall)
+  - [[18, 21, 25,29], 1, OBB, [nc, 1]] # Detect(P3, P4, P5, P3-supersmall)
